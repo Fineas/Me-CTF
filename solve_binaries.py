@@ -30,7 +30,7 @@ parser.add_argument('--remote', '-r', action="store_true")
 args = parser.parse_args()
 
 if args.remote:
-    p = remote(remote_server, 4012)
+    p = remote(remote_server, PORT)
 else:
     p = process(program_name)
 
