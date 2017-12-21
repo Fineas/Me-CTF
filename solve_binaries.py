@@ -35,7 +35,7 @@ else:
     p = process(program_name)
 
 if args.dbg:
-    gdb.attach(r, '''
+    gdb.attach(p, '''
     vmmap
     b *main
     ''')
