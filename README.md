@@ -1,4 +1,4 @@
-# CTF Tools / Scripts / Writeups
+# CTF - Tools / Scripts / Writeups
 An online repo with different tools I have built or scripts that helped me in CTF competitions among with some of the solutions I implemented for solving CTF tasks.
 
 
