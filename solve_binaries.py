@@ -6,7 +6,9 @@ import time
 import argparse
 import string
 
+# ============================================================== #
 # ========================== SETTINGS ========================== #
+# ============================================================== #
 
 context.arch = 'i386'
 context.os = 'linux'
@@ -15,12 +17,20 @@ context.word_size = 32
 # ['CRITICAL', 'DEBUG', 'ERROR', 'INFO', 'NOTSET', 'WARN', 'WARNING']
 context.log_level = 'INFO'
 
+# ============================================================== #
 # ========================== TEMPLATE ========================== #
+# ============================================================== #
 
-WORD = 'A'*4    # 32bit
-DWORD = 'X'*8   # 64bit
+
+WORD32 = 'A'*4    # 32bit
+WORD64 = 'X'*8   # 64bit
+payload = ''
+data = ''
 
 program_name = './program_name'
+binary = ELF("program_name")
+libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
+
 remote_server = 'ip of the server'
 PORT = 'number'
 
@@ -40,9 +50,7 @@ if args.dbg:
     b *main
     ''')
 
-payload = ''
-data = ''
-
+# USEFUL FUNCTIONS
 def console_output():
     data = p.recv(2000)
     # print data
@@ -54,7 +62,16 @@ def send_data(payload):
 def wait_for_prompt(sentence):
   print r.recvuntil(sentence)
 
+def get_symbols(x, y):
+    x = p32(binary.symbols[y])
+    # Example: read_got = p32(binary.symbols["read"])
+
+def search_binsh():
+    return libc.search("/bin/sh").next()
+
+# ============================================================== #
 # ====================== FLOW OF PROGRAM ======================= #
+# ============================================================== #
 
 if __name__ == "__main__":
 
