@@ -29,7 +29,6 @@ data = ''
 
 program_name = './program_name'
 binary = ELF("program_name")
-libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
 
 remote_server = 'ip of the server'
 PORT = 'number'
@@ -37,12 +36,17 @@ PORT = 'number'
 parser = argparse.ArgumentParser(description='Exploit the bins.')
 parser.add_argument('--dbg'   , '-d', action="store_true")
 parser.add_argument('--remote', '-r', action="store_true")
+parser.add_argument('--lib', '-l', action="store_true")
 args = parser.parse_args()
 
 if args.remote:
     p = remote(remote_server, PORT)
 else:
     p = process(program_name)
+
+if args.lib:
+    libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
+    r = main.process(env={'LD_PRELOAD' : libc.path})
 
 if args.dbg:
     gdb.attach(p, '''
