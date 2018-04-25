@@ -46,7 +46,7 @@ else:
 
 if args.lib:
     libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
-    r = main.process(env={'LD_PRELOAD' : libc.path})
+    r = binary.process(env={'LD_PRELOAD' : libc.path})
 
 if args.dbg:
     gdb.attach(p, '''
