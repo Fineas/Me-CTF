@@ -59,7 +59,10 @@ if args.dbg:
     b *main
     ''')
 
-# USEFUL FUNCTIONS
+# ============================================================== #
+# ====================== USEFUL FUNCTIONS ====================== #
+# ============================================================== #
+
 def console_output():
     data = p.recv(2000)
     # print data
@@ -89,9 +92,9 @@ def search_binsh():
 
 if __name__ == "__main__":
 
-    
 
-    # GDB
+
+    # ============ GDB =========== #
     gdb.attach(p)
 
     p.interactive()
