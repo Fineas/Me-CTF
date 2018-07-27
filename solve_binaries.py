@@ -10,10 +10,10 @@ import string
 # ========================== SETTINGS ========================== #
 # ============================================================== #
 
-context.arch = 'i386'
+context.arch = 'amd64' # [ amd64 | i386 ]
 context.os = 'linux'
 context.endian = 'little'
-context.word_size = 32
+context.word_size = 64 # [ 64 | 32]
 # ['CRITICAL', 'DEBUG', 'ERROR', 'INFO', 'NOTSET', 'WARN', 'WARNING']
 context.log_level = 'INFO'
 
@@ -43,12 +43,15 @@ args = parser.parse_args()
 
 if args.remote:
     p = remote(remote_server, PORT)
-else:
-    p = process(program_name)
 
-if args.lib:
-    libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
-    r = binary.process(env={'LD_PRELOAD' : libc.path})
+else:
+    # know libc
+    if args.lib:
+        libc = ELF("libc.so.6") #determin libc-version: ldd ./program_name
+        p = process(program_name, env={'LD_PRELOAD' : libc.path})
+    # don't know libc
+    else:
+        p = process(program_name)
 
 if args.dbg:
     gdb.attach(p, '''
@@ -68,9 +71,14 @@ def send_data(payload):
 def wait_for_prompt(sentence):
   print r.recvuntil(sentence)
 
-def get_symbols(x, y):
+def get_symbols(y):
     x = p32(binary.symbols[y])
+    return x
     # Example: read_got = p32(binary.symbols["read"])
+
+def get_libc_offset(x):
+    off = libc.symbols[x]
+    return off
 
 def search_binsh():
     return libc.search("/bin/sh").next()
@@ -81,6 +89,13 @@ def search_binsh():
 
 if __name__ == "__main__":
 
+    
 
+    # GDB
+    gdb.attach(p)
 
     p.interactive()
+
+# ============================================================== #
+# =========================== SKETCH =========================== #
+# ============================================================== #
