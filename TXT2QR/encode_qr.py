@@ -42,7 +42,7 @@ def write_command(cmd):
     payload = ''
     for i in arr:
         for j in i:
-            payload += j.decode().replace('#','█')
+            payload += j.decode().replace('#','\u2588')
         payload += '\n'
 
     return payload
