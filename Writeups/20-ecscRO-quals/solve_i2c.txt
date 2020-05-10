@@ -1,0 +1,3 @@
+Use Dslogic to open file.
+Decode i2c - set{ serial clock = 1 },{serial data = 0}
+Export cvs.
