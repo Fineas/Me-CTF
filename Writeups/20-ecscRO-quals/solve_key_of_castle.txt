@@ -1,3 +1,57 @@
+Decrypted data:
+/ open_windows(links, Math[floor](Math[random]() * MAXN + MAXN / 0x2));
+console.log(encode(FLAG));
+# ECSC{e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855}
+
+Frame 3085: 275 bytes on wire (2200 bits), 275 bytes captured (2200 bits) on interface any, id 0
+Linux cooked capture
+Internet Protocol Version 4, Src: 192.168.0.102, Dst: 172.217.18.66
+Transmission Control Protocol, Src Port: 48364, Dst Port: 443, Seq: 1856, Ack: 5095, Len: 207
+Transport Layer Security
+HyperText Transfer Protocol 2
+    Stream: HEADERS, Stream ID: 23, Length 163, GET /adsid/google?flag=ECSC{6be66bc90994604d67eac1b05d16d0d682c7213fada57098283cc9dc895f4bfb}
+        Length: 163
+        Type: HEADERS (1)
+        Flags: 0x25
+        0... .... .... .... .... .... .... .... = Reserved: 0x0
+        .000 0000 0000 0000 0000 0000 0001 0111 = Stream Identifier: 23
+        [Pad Length: 0]
+        0... .... .... .... .... .... .... .... = Exclusive: False
+        .000 0000 0000 0000 0000 0000 0000 1101 = Stream Dependency: 13
+        Weight: 41
+        [Weight real: 42]
+        Header Block Fragment: 8205c3607220d23131cf3505ff25a0734182f6ebdfff9c8c…
+        [Header Length: 578]
+        [Header Count: 11]
+        Header: :method: GET
+        Header: :path: /adsid/google?flag=ECSC{6be66bc90994604d67eac1b05d16d0d682c7213fada57098283cc9dc895f4bfb}
+            Name Length: 5
+            Name: :path
+            Value Length: 89
+            Value: /adsid/google?flag=ECSC{6be66bc90994604d67eac1b05d16d0d682c7213fada57098283cc9dc895f4bfb}
+            :path: /adsid/google?flag=ECSC{6be66bc90994604d67eac1b05d16d0d682c7213fada57098283cc9dc895f4bfb}
+            [Unescaped: /adsid/google?flag=ECSC{6be66bc90994604d67eac1b05d16d0d682c7213fada57098283cc9dc895f4bfb}]
+            Representation: Literal Header Field without Indexing - Indexed Name
+            Index: 5
+        Header: :authority: googleads.g.doubleclick.net
+        Header: :scheme: https
+        Header: user-agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0
+        Header: accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+        Header: accept-language: en-US,en;q=0.5
+        Header: accept-encoding: gzip, deflate, br
+        Header: cookie: IDE=AHWqTUkEc0UNws4Akwr8RaZkJHoNtLxmEs2n-Yg0dCPYnjak_7jNBpYXrfzRfaDi
+        Header: upgrade-insecure-requests: 1
+        Header: te: trailers
+    Stream: WINDOW_UPDATE, Stream ID: 23, Length 4
+        Length: 4
+        Type: WINDOW_UPDATE (8)
+        Flags: 0x00
+        0... .... .... .... .... .... .... .... = Reserved: 0x0
+        .000 0000 0000 0000 0000 0000 0001 0111 = Stream Identifier: 23
+        0... .... .... .... .... .... .... .... = Reserved: 0x0
+        .000 0000 1011 1110 0000 0000 0000 0000 = Window Size Increment: 12451840
+
+
 CLIENT_HANDSHAKE_TRAFFIC_SECRET a14d34e26e0f273582942d679469caa514d065021ef0891898c33868ff2804f4 dbc2074e4b5e8149c574a48e3e2f93e118a2f0da2cc855828cddcfe26012c53c
 SERVER_HANDSHAKE_TRAFFIC_SECRET a14d34e26e0f273582942d679469caa514d065021ef0891898c33868ff2804f4 a9bf2f53ff9f2c272229a1a1f93b45a1db5da42c772cce49d7ae1c27fc480a4b
 CLIENT_TRAFFIC_SECRET_0 a14d34e26e0f273582942d679469caa514d065021ef0891898c33868ff2804f4 000b767837cd2930c0a006bb520bd859f7efe92ebcb3da3e6447b470fd728234
