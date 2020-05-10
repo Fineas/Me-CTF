@@ -1,3 +1,7 @@
+'''
+HINT = he flag is hidden in the sample wav file. Maybe snakes can help
+'''
+
 # Use wave package (native to Python) for reading the received audio file
 import wave
 song = wave.open("00000004.wav", mode='rb')
