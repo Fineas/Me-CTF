@@ -1,5 +1,5 @@
 # Android CTF Challenges
-Below you can find a list of Android based CTF challenges which I solved and considered interesting.
+Below you can find a list of Android based CTF challenges which I solved and consider interesting.
 
 ### ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) Difficulty: Easy
 - [Pinocchio]() `HacktivityCon CTF` , `reversing` , `find correct pin`
