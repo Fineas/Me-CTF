@@ -2,7 +2,7 @@
 
 - CTF: **HackTM CTF Finals 2020**
 - Difficulty: **Medium**
-- Challenge Files: 
+- Challenge Files: [MobaDEX.apk](https://github.com/Fineas/Me-CTF/blob/master/android_challenges/challenges/MobaDEX/MobaDEX.apk)
 - Challenge Page: 
 
 # Writeup
