@@ -14,7 +14,7 @@
 - Analysis: 
   * Now that we know what the application is about, let's take a look at how the application works. Looking at the `AndroidManifest.xml` file, we can see that there are multiple Activities declared: `.ProcessMoba`, `.SendMoba`, `.ui.main.ShowMoba`, `.LoginActivity`, `.RegisterActivity`, `.MainActivity`. Somthing that is particularly interesting is that only `RegisterActivity`, `LoginActivity`, and `SendMoba` activities are being exported. We will keep that in mind.
   * Looking at the `RegisterActivity`, we can see that it takes the input from the input fields (name / email / password) and passes it via a `POST` request to: `http://35.246.216.38:8686/api.php`. So the application is using an `API` server to handle the accounts and messages.
-  * Now let's take a look at the `SendMoba` Acitvity, after all, the exported activities are some of the easiest entrypoint in the application. We can see that the application gets an `intent` and is expecting to contain `moba_user_token`, `moba_friend_token` and `moba_data` extras. The data is being sent to `do_send_moba` which uses a custom serialization method to encode the `moba_data` intent and then alongside user's token and friend's token send the data to the server. But what is a token? We can see that there is a class called `Session` which has the following structure:
+  * Now let's take a look at the `SendMoba` Acitvity, after all, the exported activities are some of the easiest entrypoint in the application. We can see that the application gets an `intent` and is expecting to contain `moba_user_token`, `moba_friend_token` and `moba_data` extras. The data is being send to `do_send_moba` which uses a custom serialization method to encode the `moba_data` intent and then alongside user's token and friend's token sends the data to the server. But what is a token? We can see that there is a class called `Session` which has the following structure:
   ```java
   public class Session {
 
@@ -79,7 +79,7 @@
   
 - Exploitation
   * With the final discovery, everything is clear. We need to start the `SendMoba` activity and make sure that the `Moba` is being sent to the Admin. Then, we would like instead of `ShowMoba` (which is the default class used when reading a Moba) to use `SendMoba` in order to be able to send the flag back to us. Then we will put the value "getFlag" inside `moba_data` and we're done.
-  * 
+  * Code
   ```java
   @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,5 +107,3 @@
         startActivity(i);
     }
   ```
- 
- - Conclusion
