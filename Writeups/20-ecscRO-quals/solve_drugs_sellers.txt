@@ -1,0 +1,11 @@
+1. In order to buy from us, its necessary to obtain the secret code which is hidden inside the application. 
+2. Follow the instructions and you cannot miss it.
+3. The first step is to understand the following message: 
+
+b64_decoded(R28gdG8gU0NfSW5mbyBhbmQgb2J0YWluIHRoZSBuZXh0IHN0ZXAu== ) == Go to SC_Info and obtain the next step.
+
+The next step is found in
+John the Rippe ( $2a$05$4M7egAOggmDx1ROqu8bX2.zrp9rrmF4y/tI1dOzx2GFR9.gjcEhc6 ) == ?:asterix
+
+bain_fuck_decode( ++++[++++>---<]>++.--.>-[--->+<]>--.--[->++++<]>-.-----[->++<]>-.-[->+++++<]>.[-->+<]>+++++.----[->++<]>.-.-[------>+<]>--.------...--..[->++<]>.+.+[-->+<]>.+.++.++.-----[->++<]>-..+[-->+<]>+++.--[->++<]>.---.+[-->+<]>++++.---.+++.-----[->++<]>-.+[-->+<]>+++.--[->++<]>.--.+++.+[-->+<]>+.---.[->++<]>-.-[-->+<]>.+.[->++<]>.[-->+<]>++++++.------[->++<]>-.+[-->+<]>++..--[->++<]>.[-->+<]>++++.+++.-----.-[->++<]>.[-->+<]>--.++++.-.--[->++<]>-.+[-->+<]>++++++.----[->++<]>.++[->+++<]>.-.-------.-[--->+<]>+.[-->+<]>.+..----.++++++.+++.--.----[->++<]>-.-[-->+<]>.+++++.>--[-->+++<]> ) 
+ == ECSC{b6dc933311bc2357cc5fc636a4dbe41a01b7a33b583d043a7f870f3440697e27}
