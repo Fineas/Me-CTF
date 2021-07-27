@@ -15,3 +15,4 @@ Below you can find a list of Android based CTF challenges which I solved and con
 ### ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Difficulty: Hard
 - [APP ADS](https://github.com/Fineas/Me-CTF/tree/master/android_challenges/challenges/APP%20ADS) `Google CTF Quals 2020` , `pwning`
 - [R2pay - Obfuscated Master Key](https://github.com/Fineas/Me-CTF/tree/master/android_challenges/challenges/R2pay%20-%20Obfuscated%20Master%20Key) `Radare2 CTF 2020` , `reversing`
+- [TRIDROID](https://fineas.github.io/FeDEX/post/tridroid.html) `Google CTF Quals 2021` , `pwning`
